@@ -1,0 +1,41 @@
+
+/* ---- TABLET VIEW ---- */
+
+@media (max-width: 1200px) {
+  html {
+    font-size: 60%;
+  }
+}
+
+/* ---- MOBILE VIEW ---- */
+@media (max-width: 460px) {
+  html {
+    font-size: 70%;
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+
+  .header{
+    height: 200px;
+  }
+
+  .toggle{
+    margin-top: 60px;
+  }
+
+  .product-list {
+    grid-template-columns: repeat(auto-fill, minmax(10px, 1fr));
+  }
+
+  .basket {
+    position: absolute;
+    background-color: rgba(0,0,0,0.8) !important;
+  }
+
+  .btn-buy-all{
+    margin-bottom: 20px;
+  }
+
+}

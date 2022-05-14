@@ -1,0 +1,231 @@
+/***
+    The new CSS reset - version 1.6.0 (last updated 29.4.2022)
+    GitHub page: https://github.com/elad2412/the-new-css-reset
+***/
+/*
+    Remove all the styles of the "User-Agent-Stylesheet", except for the 'display' property
+    - The "symbol *" part is to solve Firefox SVG sprite bug
+ */
+*:where(:not(html, iframe, canvas, img, svg, video):not(svg *, symbol *)) {
+  all: unset;
+  display: revert; }
+
+/* Preferred box-sizing value */
+*,
+*::before,
+*::after {
+  box-sizing: border-box; }
+
+/* Reapply the pointer cursor for anchor tags */
+a, button {
+  cursor: revert; }
+
+/* Remove list styles (bullets/numbers) */
+ol, ul, menu {
+  list-style: none; }
+
+/* For images to not be able to exceed their container */
+img {
+  max-width: 100%; }
+
+/* removes spacing between cells in tables */
+table {
+  border-collapse: collapse; }
+
+/* revert the 'white-space' property for textarea elements on Safari */
+textarea {
+  white-space: revert; }
+
+/* minimum style to allow to style meter element */
+meter {
+  -webkit-appearance: revert;
+  appearance: revert; }
+
+/* reset default text opacity of input placeholder */
+::placeholder {
+  color: unset; }
+
+/* fix the feature of 'hidden' attribute.
+   display:revert; revert to element instead of attribute */
+:where([hidden]) {
+  display: none; }
+
+/* revert for bug in Chromium browsers
+   - fix for the content editable attribute will work properly. */
+:where([contenteditable]) {
+  -moz-user-modify: read-write;
+  -webkit-user-modify: read-write;
+  overflow-wrap: break-word;
+  -webkit-line-break: after-white-space; }
+
+/* apply back the draggable feature - exist only in Chromium and Safari */
+:where([draggable="true"]) {
+  -webkit-user-drag: element; }
+
+/* ---- TABLET VIEW ---- */
+@media (max-width: 1200px) {
+  html {
+    font-size: 60%; } }
+/* ---- MOBILE VIEW ---- */
+@media (max-width: 460px) {
+  html {
+    font-size: 70%; }
+
+  body {
+    overflow-x: hidden; }
+
+  .header {
+    height: 200px; }
+
+  .toggle {
+    margin-top: 60px; }
+
+  .product-list {
+    grid-template-columns: repeat(auto-fill, minmax(10px, 1fr)); }
+
+  .basket {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.8) !important; }
+
+  .btn-buy-all {
+    margin-bottom: 20px; } }
+html {
+  box-sizing: border-box;
+  scroll-behavior: smooth; }
+
+body {
+  font-family: 'Playfair Display', serif;
+  text-align: center;
+  background-color: #EDE3E4; }
+
+.hidden {
+  display: none; }
+
+#container {
+  display: flex;
+  justify-content: space-evenly;
+  height: 100%; }
+
+.products {
+  width: 1035px; }
+
+.basket {
+  width: 345px;
+  color: #EDE3E4;
+  background-color: rgba(0, 0, 0, 0.6);
+  text-align: center;
+  font-size: 1.3rem; }
+
+.basket-info {
+  font-size: 1rem;
+  color: #92898A; }
+
+.basket-list {
+  margin-top: 2rem; }
+
+.main-title {
+  font-size: 8rem; }
+
+.sub-title, .title {
+  font-size: 3rem;
+  margin-top: 1rem;
+  margin-bottom: 2rem; }
+
+.title {
+  text-transform: uppercase; }
+
+.header {
+  font-family: 'Square Peg', cursive;
+  height: 350px;
+  margin-top: 100px; }
+
+.product-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(345px, 1fr));
+  justify-items: center;
+  grid-column-gap: 0;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto; }
+
+li .image {
+  width: 345px;
+  height: 345px;
+  background-size: cover; }
+li .image:before {
+  content: '';
+  display: block;
+  height: 0;
+  transition: all 0.5s ease;
+  background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.8) 30%, rgba(0, 0, 0, 0.9) 100%); }
+li .product-info {
+  font-size: 2.2rem;
+  position: relative;
+  top: 0;
+  visibility: hidden; }
+li .product-price {
+  font-size: 1.7rem; }
+li .image:hover:before {
+  height: 100%; }
+li .image:hover .product-info {
+  color: white;
+  position: relative;
+  top: -220px;
+  visibility: visible; }
+li .image:hover .add-to-basket {
+  visibility: visible;
+  top: -200px; }
+
+.cucumber {
+  background-image: url("https://images.pexels.com/photos/3568039/pexels-photo-3568039.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"); }
+
+.lettuce {
+  background-image: url("https://images.pexels.com/photos/2893639/pexels-photo-2893639.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"); }
+
+.tomatoes {
+  background-image: url("https://images.pexels.com/photos/1327838/pexels-photo-1327838.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"); }
+
+.watermelon {
+  background-image: url("https://images.pexels.com/photos/5946081/pexels-photo-5946081.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"); }
+
+.apple {
+  background-image: url("https://images.pexels.com/photos/693794/pexels-photo-693794.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"); }
+
+.strawberries {
+  background-image: url("https://images.pexels.com/photos/6944172/pexels-photo-6944172.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"); }
+
+.add-to-basket {
+  width: 50px;
+  font-size: 1.2rem;
+  position: relative;
+  margin-left: 10px;
+  visibility: hidden; }
+
+.toggle {
+  font-size: 1.8rem;
+  padding-inline: 1rem; }
+
+.add-to-basket, .toggle {
+  border-radius: 5px;
+  color: #463e42;
+  background-color: #9e8b93; }
+
+.add-to-basket:hover, .btn-buy-all:hover, .toggle:hover {
+  color: black;
+  background-color: #786e71;
+  transition: all 0.5s ease; }
+
+.btn-buy-all, .btn-buy-all:disabled:hover {
+  width: 200px;
+  color: #EDE3E4;
+  margin-top: 10px;
+  background-color: #9e8b93;
+  border-radius: 5px; }
+
+.btn-buy-all:hover {
+  color: #EDE3E4; }
+
+.btn-buy-all:disabled, .btn-buy-all:disabled:hover {
+  color: #786e71; }
+
+/*# sourceMappingURL=style.css.map */

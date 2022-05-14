@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Easy shop basket</title>
+    <link rel="stylesheet" href="sass/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Square+Peg&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <header class="header">
+        <h1 class="main-title">Fresh groceries</h1>
+        <h2 class="sub-title">delivered every day</h2>
+        <a class="toggle toggle-admin">Turn on admin mode</a>
+        <button class="toggle toggle-basket">Show your basket</button>
+    </header>
+    <div id="container">
+    <section class="products">
+        <ul class="product-list">
+            <li class="item-name">
+                <div class="image cucumber">
+                    <p class="product-info">Long cucumber</p>
+                    <p class="product-info product-price">&#163; 0.75 / pcs</p>
+                    <button class="add-to-basket"
+                        data-name="Long cucumbers"
+                        data-price="0.75"
+                    >Add</button>
+                </div>
+            </li>
+            <li class="item-name">
+                <div class="image tomatoes">
+                    <p class="product-info">Vine tomatoes</p>
+                    <p class="product-info product-price">&#163; 3.80 / kg</p>
+                    <button class="add-to-basket"
+                        data-name="Vine tomatoes"
+                        data-price="3.8"
+                >Add</button></div>
+            </li>
+            <li class="item-name">
+                <div class="image lettuce">
+                    <p class="product-info">Iceberg lettuce</p>
+                    <p class="product-info product-price">&#163; 1.20 / pcs</p>
+                    <button class="add-to-basket"
+                        data-name="Iceberg lettuce"
+                        data-price="1.2"
+                >Add</button>
+                </div>
+            </li>
+            <li class="item-name">
+                <div class="image watermelon">
+                    <p class="product-info">Watermelon</p>
+                    <p class="product-info product-price">&#163; 2.80 / kg</p>
+                    <button class="add-to-basket"
+                        data-name="Watermelon"
+                        data-price="2.8"
+                    >Add</button>
+                </div>
+            </li>
+            <li class="item-name">
+                <div class="image apple">
+                    <p class="product-info">Green apple</p>
+                    <p class="product-info product-price">&#163; 2.00 / kg</p>
+                    <button class="add-to-basket" data-name="Green apple"
+                            data-price="2"
+                    >Add</button>
+                </div>
+            </li>
+            <li class="item-name">
+                <div class="image strawberries">
+                    <p class="product-info">Strawberries</p>
+                    <p class="product-info product-price">&#163; 4.20 / kg</p>
+                    <button class="add-to-basket" data-name="Strawberries"
+                            data-price="4.2"
+                    >Add</button>
+                </div>
+            </li>
+        </ul>
+    </section>
+
+    <section class="basket hidden">
+        <h1 class="title">Your basket</h1>
+        <h2 class="basket-info">To remove product from your basket <br>simply click on its name</h2>
+        <ul class="basket-list"></ul>
+        <button class="btn-buy-all" disabled>Proceed to checkout</button>
+    </section>
+    </div>
+
+    <section id="admin-mode" class="admin-add-product hidden">
+         <h1>Admin mode - add new products:</h1>
+        <form class="form-add-product">
+            <input type="text"
+                   name="product-name"
+                   placeholder="Name here..."
+                   required
+            >
+            <input type="number"
+                   name="product-price"
+                   placeholder="Price here..."
+                   required
+            >
+            <input type="text"
+                   name="product-count"
+                   placeholder="Per kg or pcs?"
+                   required
+            >
+            <input type="text"
+                   name="product-class"
+                   placeholder="Class name here..."
+                   required
+            >
+            <input type="text"
+                   name="product-img-src"
+                   placeholder="Enter image source here..."
+            >
+            <button type="submit">Add</button>
+        </form>
+    </section>
+
+
+    <script src="src/basket.js"></script>
+    <script src="src/ui.js"></script>
+    <script src="src/admin.js"></script>
+</body>
+</html>
