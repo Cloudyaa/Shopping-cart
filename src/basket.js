@@ -27,16 +27,24 @@ class Basket {
         // dowolna nazwa pod którą schowamy localStorage ; zawartosc koszyka z konstruktra
         //                        v                              v
         localStorage.setItem('basket-items', JSON.stringify(this.items));
+        localStorage.setItem('basket-counter', JSON.stringify(this.getBasketSummary().length));
     }
 
     loadFromLocalStorage(){
         const itemsJson = localStorage.getItem('basket-items');
+        const counterJson = localStorage.getItem('basket-counter');
 
         if(itemsJson === null){
             return []; // nic nie ma w lS wiec chcę zwrócić pustą tablicę - pusty koszyk
         } else {
             //odczyt z localStorage - parsujemy string na obiekt i zwracamy zawartosc zapisaną w lS
             return JSON.parse(itemsJson);
+        }
+
+        if(counterJson === null){
+            return 0;
+        } else {
+            return JSON.parse(counterJson);
         }
     }
 

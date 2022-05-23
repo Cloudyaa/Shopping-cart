@@ -7,8 +7,7 @@ const imgSrcInput = document.querySelector('[name="product-img-src"]');
 const productsUl = document.querySelector('.product-list');
 const btnToggleAdmin = document.querySelector('.toggle-admin');
 const adminSection = document.querySelector('.admin-add-product');
-const btnToggleBasket = document.querySelector('.toggle-basket');
-const basketSection = document.querySelector('.basket');
+
 
 
 const saveProductsToLocalStorage = (name, price, count, className, imgSrc) => {
@@ -100,16 +99,6 @@ const loadProductsFromLocalStorage = () => {
 // przycisk dodania produktu do sklepu
 addProductForm.addEventListener('submit', handleAddProductFormSubmit    );
 
-const toggleBasket = () => {
-    const basketVisibility = basketSection.classList.toggle('hidden');
-    if (basketVisibility){
-        btnToggleBasket.innerText = 'Show basket';
-    } else {
-        btnToggleBasket.innerText = 'Hide basket';
-    }
-}
-
- btnToggleBasket.addEventListener('click', toggleBasket);
 
 // przycisk on/off admin-mode
 btnToggleAdmin.addEventListener('click', () => {

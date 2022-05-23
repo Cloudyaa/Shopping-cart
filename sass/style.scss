@@ -141,6 +141,17 @@ body {
   margin-top: 100px;
 }
 
+.products-counter-info, .text {
+  font-size: 2rem;
+  margin-left: 10px;
+}
+
+.text {
+  color: $sub-text;
+  margin-left: unset;
+  margin-right: 10px;
+}
+
 .product-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(345px, 1fr));
@@ -148,7 +159,7 @@ body {
   grid-column-gap: 0;
   width: 100%;
   max-width: 100%;
-  margin: 0 auto;
+  margin: 2em auto;
 }
 
 li {
@@ -222,6 +233,16 @@ li {
   background-image: url("https://images.pexels.com/photos/6944172/pexels-photo-6944172.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
 }
 
+label {
+  background-color: #92898A;
+  margin-right:5px;
+}
+
+
+button {
+  cursor: pointer;
+}
+
 .add-to-basket {
   width: 50px;
   font-size: 1.2rem;
@@ -230,9 +251,14 @@ li {
   visibility: hidden;
 }
 
-.toggle{
+.toggle {
   font-size: 1.8rem;
   padding-inline: 1rem;
+}
+
+.toggle-admin {
+  position: relative;
+  top:10px;
 }
 
 .add-to-basket, .toggle{
@@ -245,6 +271,7 @@ li {
   color: black;
   background-color:$hover;
   transition: $transition;
+
 }
 
 .btn-buy-all, .btn-buy-all:disabled:hover {
@@ -257,8 +284,10 @@ li {
 
 .btn-buy-all:hover{
   color: $main-background;
+
 }
 
 .btn-buy-all:disabled, .btn-buy-all:disabled:hover{
   color: $hover;
+  cursor: auto;
 }

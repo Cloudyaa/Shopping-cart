@@ -16,8 +16,9 @@
     <header class="header">
         <h1 class="main-title">Fresh groceries</h1>
         <h2 class="sub-title">delivered every day</h2>
-        <a class="toggle toggle-admin">Turn on admin mode</a>
+        <span class="products-counter-info">0</span><span class="text"> items in basket</span>
         <button class="toggle toggle-basket">Show your basket</button>
+        <br><a class="toggle toggle-admin">Turn on admin mode</a>
     </header>
     <div id="container">
     <section class="products">
@@ -93,31 +94,41 @@
     <section id="admin-mode" class="admin-add-product hidden">
          <h1>Admin mode - add new products:</h1>
         <form class="form-add-product">
-            <input type="text"
-                   name="product-name"
-                   placeholder="Name here..."
-                   required
-            >
-            <input type="number"
-                   name="product-price"
-                   placeholder="Price here..."
-                   required
-            >
-            <input type="text"
-                   name="product-count"
-                   placeholder="Per kg or pcs?"
-                   required
-            >
-            <input type="text"
-                   name="product-class"
-                   placeholder="Class name here..."
-                   required
-            >
-            <input type="text"
-                   name="product-img-src"
-                   placeholder="Enter image source here..."
-            >
-            <button type="submit">Add</button>
+            <label>
+                <input type="text"
+                       name="product-name"
+                       placeholder="Name here..."
+                       required
+                >
+            </label>
+            <label>
+                <input type="number"
+                       name="product-price"
+                       placeholder="Price here..."
+                       required
+                >
+            </label>
+            <label>
+                <input type="text"
+                       name="product-count"
+                       placeholder="Per kg or pcs?"
+                       required
+                >
+            </label>
+            <label>
+                <input type="text"
+                       name="product-class"
+                       placeholder="Class name here..."
+                       required
+                >
+            </label>
+            <label>
+                <input type="text"
+                       name="product-img-src"
+                       placeholder="Enter image source here... "
+                >
+            </label>
+            <button type="submit" class="btn-add-product">&nbsp;Add</button>
         </form>
     </section>
 

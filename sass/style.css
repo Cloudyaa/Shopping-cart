@@ -139,6 +139,15 @@ body {
   height: 350px;
   margin-top: 100px; }
 
+.products-counter-info, .text {
+  font-size: 2rem;
+  margin-left: 10px; }
+
+.text {
+  color: #92898A;
+  margin-left: unset;
+  margin-right: 10px; }
+
 .product-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(345px, 1fr));
@@ -146,7 +155,7 @@ body {
   grid-column-gap: 0;
   width: 100%;
   max-width: 100%;
-  margin: 0 auto; }
+  margin: 2em auto; }
 
 li .image {
   width: 345px;
@@ -194,6 +203,13 @@ li .image:hover .add-to-basket {
 .strawberries {
   background-image: url("https://images.pexels.com/photos/6944172/pexels-photo-6944172.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"); }
 
+label {
+  background-color: #92898A;
+  margin-right: 5px; }
+
+button {
+  cursor: pointer; }
+
 .add-to-basket {
   width: 50px;
   font-size: 1.2rem;
@@ -204,6 +220,10 @@ li .image:hover .add-to-basket {
 .toggle {
   font-size: 1.8rem;
   padding-inline: 1rem; }
+
+.toggle-admin {
+  position: relative;
+  top: 10px; }
 
 .add-to-basket, .toggle {
   border-radius: 5px;
@@ -226,6 +246,7 @@ li .image:hover .add-to-basket {
   color: #EDE3E4; }
 
 .btn-buy-all:disabled, .btn-buy-all:disabled:hover {
-  color: #786e71; }
+  color: #786e71;
+  cursor: auto; }
 
 /*# sourceMappingURL=style.css.map */
