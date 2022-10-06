@@ -8,66 +8,63 @@ const productsUl = document.querySelector('.product-list');
 const btnToggleAdmin = document.querySelector('.toggle-admin');
 const adminSection = document.querySelector('.admin-add-product');
 
-
-
 const saveProductsToLocalStorage = (name, price, count, className, imgSrc) => {
-    // druga metoda - inna niż w przypadku koszyka
-    // jesli trafi na wartosc nullową to zwróci pustą tablicę
-    // a jeśli nie jest null to zrobi parse i poda to co w lS
-    const productsList = JSON.parse(localStorage.getItem('shop-products')) ?? [];
+  // druga metoda - inna niż w przypadku koszyka
+  // jesli trafi na wartosc nullową to zwróci pustą tablicę
+  // a jeśli nie jest null to zrobi parse i poda to co w lS
+  const productsList = JSON.parse(localStorage.getItem('shop-products')) ?? [];
 
-    // dodanie nowego produktu jako ostani elemnt tablicy
-    // to niżej to to samo co to:
-    // oldProductsList.push({
-    //  name: name,
-    //  price: price,
-    // });
-    productsList.push({name, price, count, className, imgSrc});
-    localStorage.setItem('shop-products', JSON.stringify(productsList));
-
-}
+  // dodanie nowego produktu jako ostani elemnt tablicy
+  // to niżej to to samo co to:
+  // oldProductsList.push({
+  //  name: name,
+  //  price: price,
+  // });
+  productsList.push({
+    name, price, count, className, imgSrc,
+  });
+  localStorage.setItem('shop-products', JSON.stringify(productsList));
+};
 
 const addProductToShop = (name, price, count, className, imgSrc) => {
+  const newLi = document.createElement('li');
+  const newProductName = document.createElement('p');
+  const newProductPrice = document.createElement('p');
+  const newDiv = document.createElement('div');
+  const newBtn = document.createElement('button');
 
-    const newLi = document.createElement('li');
-    const newProductName = document.createElement('p');
-    const newProductPrice = document.createElement('p');
-    const newDiv = document.createElement('div');
-    const newBtn = document.createElement('button');
+  newLi.classList.add('item-name');
+  newDiv.classList.add('image');
+  newDiv.classList.add(className);
+  newProductName.classList.add('product-info');
+  newProductPrice.classList.add('product-info', 'product-price');
 
-    newLi.classList.add('item-name');
-    newDiv.classList.add('image');
-    newDiv.classList.add(className);
-    newProductName.classList.add('product-info');
-    newProductPrice.classList.add('product-info','product-price');
+  newDiv.style.backgroundImage = `url("${imgSrc}")`;
 
-    newDiv.style.backgroundImage = `url("${imgSrc}")`;
+  // dodanie class='add-to-basket' w <button>
+  newBtn.classList.add('add-to-basket');
 
-    // dodanie class='add-to-basket' w <button>
-    newBtn.classList.add('add-to-basket');
+  // dodanie class='add-to-basket' w <button>
+  newBtn.classList.add('add-to-basket');
+  // dodanie data-name=' ' w <button>
+  newBtn.dataset.name = name;
+  // dodanie data-price=' ' w <button>, zmiana na string bo dataset przechowuje dane jako stringi
+  newBtn.dataset.price = String(price);
+  // obsluga nowego przycisku
+  newBtn.addEventListener('click', addToBasket);
 
-    // dodanie class='add-to-basket' w <button>
-    newBtn.classList.add('add-to-basket');
-    // dodanie data-name=' ' w <button>
-    newBtn.dataset.name = name;
-    // dodanie data-price=' ' w <button>, zmiana na string bo dataset przechowuje dane jako stringi
-    newBtn.dataset.price = String(price);
-    // obsluga nowego przycisku
-    newBtn.addEventListener('click', addToBasket);
+  newProductName.innerText = name;
+  newProductPrice.innerHTML = `&#163; ${price.toFixed(2)} / ${count}`;
+  newBtn.innerText = 'Add';
 
-    newProductName.innerText = name;
-    newProductPrice.innerHTML = `&#163; ${price.toFixed(2)} / ${count}`;
-    newBtn.innerText = 'Add';
-
-    // dodanie nowego <p> i <button> w <li>
-    newLi.appendChild(newDiv);
-    newDiv.appendChild(newProductName);
-    newDiv.appendChild(newProductPrice);
-    newDiv.appendChild(newBtn);
-    // dodanie nowego <li> do listy produktów
-    productsUl.appendChild(newLi);
-
-}
+  // dodanie nowego <p> i <button> w <li>
+  newLi.appendChild(newDiv);
+  newDiv.appendChild(newProductName);
+  newDiv.appendChild(newProductPrice);
+  newDiv.appendChild(newBtn);
+  // dodanie nowego <li> do listy produktów
+  productsUl.appendChild(newLi);
+};
 
 // obsłuż wysłanie formularza do dodania produktu
 const handleAddProductFormSubmit = event => {
@@ -75,42 +72,42 @@ const handleAddProductFormSubmit = event => {
     // zablokowanie domyslnego dzialania przegladarki czyli wylaczenie zeby formularz się przesyłał po kliknięciu lub enter
     event.preventDefault();
 
-    // pobranie wartosci z przeslanego formularza
-    const nameFromInput = nameInput.value;
-    const priceFromInput = Number(priceInput.value);
-    const countFromInput = countInput.value;
-    const classFromInput = classInput.value;
-    const imgSrcFromInput = imgSrcInput.value;
+  // pobranie wartosci z przeslanego formularza
+  const nameFromInput = nameInput.value;
+  const priceFromInput = Number(priceInput.value);
+  const countFromInput = countInput.value;
+  const classFromInput = classInput.value;
+  const imgSrcFromInput = imgSrcInput.value;
 
-    addProductToShop(nameFromInput, priceFromInput, countFromInput, classFromInput, imgSrcFromInput);
-    saveProductsToLocalStorage(nameFromInput, priceFromInput, countFromInput, classFromInput, imgSrcFromInput);
-}
+  addProductToShop(nameFromInput, priceFromInput, countFromInput, classFromInput, imgSrcFromInput);
+  // eslint-disable-next-line max-len
+  saveProductsToLocalStorage(nameFromInput, priceFromInput, countFromInput, classFromInput, imgSrcFromInput);
+};
 
 const loadProductsFromLocalStorage = () => {
-    const productsList = JSON.parse(localStorage.getItem('shop-products')) ?? [];
+  const productsList = JSON.parse(localStorage.getItem('shop-products')) ?? [];
 
-    // for const product (destrukturyzacja)
-    for (const {name, price, count, className, imgSrc} of productsList) {
-        addProductToShop(name, price, count, className, imgSrc);
-    }
-
-}
+  // for const product (destrukturyzacja)
+  for (const {
+    name, price, count, className, imgSrc,
+  } of productsList) {
+    addProductToShop(name, price, count, className, imgSrc);
+  }
+};
 
 // przycisk dodania produktu do sklepu
-addProductForm.addEventListener('submit', handleAddProductFormSubmit    );
-
+addProductForm.addEventListener('submit', handleAddProductFormSubmit);
 
 // przycisk on/off admin-mode
 btnToggleAdmin.addEventListener('click', () => {
-    const isAdminMode = adminSection.classList.toggle('hidden');
-    if(isAdminMode) {
-        btnToggleAdmin.innerText = 'Turn on admin mode';
-        btnToggleAdmin.removeAttribute('href');
-    } else {
-        btnToggleAdmin.innerText = 'Turn off admin mode';
-        btnToggleAdmin.setAttribute('href','#admin-mode');
-
-    }
+  const isAdminMode = adminSection.classList.toggle('hidden');
+  if (isAdminMode) {
+    btnToggleAdmin.innerText = 'Turn on admin mode';
+    btnToggleAdmin.removeAttribute('href');
+  } else {
+    btnToggleAdmin.innerText = 'Turn off admin mode';
+    btnToggleAdmin.setAttribute('href', '#admin-mode');
+  }
 });
 
 loadProductsFromLocalStorage();
