@@ -1,11 +1,9 @@
 class Basket {
   constructor() {
-    // miejsce w ktorym bedzie zawartosc koszyka
     this.items = this.loadFromLocalStorage();
   }
 
   add(item) {
-    // metoda add doda nam item do basketu
     this.items.push(item);
     this.saveToLocalStorage();
   }
@@ -16,16 +14,12 @@ class Basket {
   }
 
   remove(no) {
-    // metoda usuwajaca z tablicy 1 element  (delete)
-    // start jest no - 1 bo mamy indeksy od 1 a nie od 0
+    //  no - 1 caused by indexes from 1, not 0
     this.items.splice(no - 1, 1);
-    // po tym jak usuniesz to zapisz koszyk
     this.saveToLocalStorage();
   }
 
   saveToLocalStorage() {
-    // dowolna nazwa pod którą schowamy localStorage ; zawartosc koszyka z konstruktra
-    //                        v                              v
     localStorage.setItem('basket-items', JSON.stringify(this.items));
     localStorage.setItem('basket-counter', JSON.stringify(this.getBasketSummary().length));
   }
@@ -35,9 +29,9 @@ class Basket {
     const counterJson = localStorage.getItem('basket-counter');
 
     if (itemsJson === null) {
-      return []; // nic nie ma w lS wiec chcę zwrócić pustą tablicę - pusty koszyk
+      return [];
     }
-    // odczyt z localStorage - parsujemy string na obiekt i zwracamy zawartosc zapisaną w lS
+
     return JSON.parse(itemsJson);
 
     if (counterJson === null) {
@@ -47,7 +41,7 @@ class Basket {
   }
 
   getTotalValue() {
-    // suma koszyka
+    // basket total
     return this.items.reduce((prev, product) => prev + product.price, 0);
   }
 

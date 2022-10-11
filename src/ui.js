@@ -5,10 +5,9 @@ const btnToggleBasket = document.querySelector('.toggle-basket');
 const basketSection = document.querySelector('.basket');
 const productsCounterInfo = document.querySelector('.products-counter-info');
 
-// utworzenie obiektu koszyka
 const basket = new Basket();
 
-// usuwanie produktu z koszyka po wyszukaniu jego ID
+// delete item when ID found
 const removeItem = event => {
   const id = Number(event.target.dataset.id);
   basket.remove(id);
@@ -23,10 +22,10 @@ const createBasket = () => {
   }
 
   for (const oneProductInfo of basket.getBasketSummary()) {
-    const { text, id } = oneProductInfo; // destrukturyzacja obiektu
+    const { text, id } = oneProductInfo;
 
     const newLi = document.createElement('li'); // utworzy sie w HTML <li>
-    // dzieki destrukturyzacji mozna zapisac skrótowo
+
     newLi.innerText = text; // oneProductInfo.text;
     newLi.addEventListener('click', removeItem);
     newLi.dataset.id = id; // oneProductInfo.id;
@@ -38,7 +37,6 @@ const createBasket = () => {
 
   btnCheckOut.disabled = basketTotalValue === 0;
 
-  // Pojawienie się informacji o ilości produktów w koszyku
   const productsCounter = basket.getBasketSummary().length;
   if (localStorage.getItem('basket-counter') === null) {
     productsCounterInfo.innerText = '0';
@@ -48,15 +46,13 @@ const createBasket = () => {
 };
 
 const addToBasket = event => {
-  // pobranie nazwy produktu z html data-name
+  // take name from html data-name
   const { name } = event.target.dataset;
-  // pobranie ceny produktu z html data-price
+  // take price from  html data-price
   const price = Number(event.target.dataset.price);
 
-  // utworzenie obiektu nowego produktu za kazdym kliknieciem w button
   const newProduct = new Product(name, price);
 
-  // dodawanie produktu do koszyka
   basket.add(newProduct);
 
   createBasket();
@@ -69,7 +65,7 @@ const checkOut = () => {
   basketUl.innerHTML = 'Your basket is empty';
 };
 
-// petla aby dzialalo dla kazdego buttonu
+
 for (const btn of btnAddToBasket) {
   btn.addEventListener('click', addToBasket);
 }

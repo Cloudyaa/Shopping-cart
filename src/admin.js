@@ -9,13 +9,10 @@ const btnToggleAdmin = document.querySelector('.toggle-admin');
 const adminSection = document.querySelector('.admin-add-product');
 
 const saveProductsToLocalStorage = (name, price, count, className, imgSrc) => {
-  // druga metoda - inna niż w przypadku koszyka
-  // jesli trafi na wartosc nullową to zwróci pustą tablicę
-  // a jeśli nie jest null to zrobi parse i poda to co w lS
+
+  // if null then return empty []
   const productsList = JSON.parse(localStorage.getItem('shop-products')) ?? [];
 
-  // dodanie nowego produktu jako ostani elemnt tablicy
-  // to niżej to to samo co to:
   // oldProductsList.push({
   //  name: name,
   //  price: price,
@@ -41,38 +38,28 @@ const addProductToShop = (name, price, count, className, imgSrc) => {
 
   newDiv.style.backgroundImage = `url("${imgSrc}")`;
 
-  // dodanie class='add-to-basket' w <button>
   newBtn.classList.add('add-to-basket');
 
-  // dodanie class='add-to-basket' w <button>
-  newBtn.classList.add('add-to-basket');
-  // dodanie data-name=' ' w <button>
   newBtn.dataset.name = name;
-  // dodanie data-price=' ' w <button>, zmiana na string bo dataset przechowuje dane jako stringi
+  // dataset stores data as strings thats why its converted
   newBtn.dataset.price = String(price);
-  // obsluga nowego przycisku
+
   newBtn.addEventListener('click', addToBasket);
 
   newProductName.innerText = name;
   newProductPrice.innerHTML = `&#163; ${price.toFixed(2)} / ${count}`;
   newBtn.innerText = 'Add';
 
-  // dodanie nowego <p> i <button> w <li>
+  // add new <p> and <li>
   newLi.appendChild(newDiv);
   newDiv.appendChild(newProductName);
   newDiv.appendChild(newProductPrice);
   newDiv.appendChild(newBtn);
-  // dodanie nowego <li> do listy produktów
   productsUl.appendChild(newLi);
 };
 
-// obsłuż wysłanie formularza do dodania produktu
 const handleAddProductFormSubmit = event => {
-
-    // zablokowanie domyslnego dzialania przegladarki czyli wylaczenie zeby formularz się przesyłał po kliknięciu lub enter
-    event.preventDefault();
-
-  // pobranie wartosci z przeslanego formularza
+  event.preventDefault();
   const nameFromInput = nameInput.value;
   const priceFromInput = Number(priceInput.value);
   const countFromInput = countInput.value;
@@ -80,14 +67,12 @@ const handleAddProductFormSubmit = event => {
   const imgSrcFromInput = imgSrcInput.value;
 
   addProductToShop(nameFromInput, priceFromInput, countFromInput, classFromInput, imgSrcFromInput);
-  // eslint-disable-next-line max-len
   saveProductsToLocalStorage(nameFromInput, priceFromInput, countFromInput, classFromInput, imgSrcFromInput);
 };
 
 const loadProductsFromLocalStorage = () => {
   const productsList = JSON.parse(localStorage.getItem('shop-products')) ?? [];
 
-  // for const product (destrukturyzacja)
   for (const {
     name, price, count, className, imgSrc,
   } of productsList) {
@@ -95,10 +80,10 @@ const loadProductsFromLocalStorage = () => {
   }
 };
 
-// przycisk dodania produktu do sklepu
+
 addProductForm.addEventListener('submit', handleAddProductFormSubmit);
 
-// przycisk on/off admin-mode
+
 btnToggleAdmin.addEventListener('click', () => {
   const isAdminMode = adminSection.classList.toggle('hidden');
   if (isAdminMode) {

@@ -13,10 +13,10 @@
   "rules": {
     "arrow-parens": ["error", "as-needed"],
     "padded-blocks": ["warn"],
-    "quotes": ["warn", "single"], //reguła o cudzysłowie
-    "import/prefer-default-export": "off", //dodane, by nie wywalało błędu o importach
-    "no-console": "off", //dodane by nie wywalało błędu o używaniu console.log
-    "import/extensions": [ // to dodane jest, by nie wyrzucało błędów przy importach plików z rozszerzeniem .js
+    "quotes": ["warn", "single"],
+    "import/prefer-default-export": "off",
+    "no-console": "off",
+    "import/extensions": [
       "error",
       {
         "js": "ignorePackages"
